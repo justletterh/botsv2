@@ -1,0 +1,12 @@
+#!/bin/bash
+SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd $SP/discord.py
+./up
+cd ../eris
+./up
+cd ../discordrb
+./up
+cd ../discord.js
+./up
+cd ../discordgo
+./up

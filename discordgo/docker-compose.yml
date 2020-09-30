@@ -1,0 +1,10 @@
+version: "3"
+services:
+  bot:
+    build: .
+    restart: on-failure
+    entrypoint: go run /app/discordgo.go
+    volumes:
+      - "./:/app"
+    environment:
+      - "DISCORD_TOKEN=PUT_BOT_TOKEN_HERE"
