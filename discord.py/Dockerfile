@@ -1,5 +1,5 @@
-FROM python:3.8-alpine
+FROM python:buster
 
-RUN apk add --no-cache build-base libffi-dev
-RUN pip install -U discord.py[voice] jishaku psutil
-RUN apk add bash
+RUN apt update&&apt upgrade -y
+RUN pip3 --no-cache-dir check
+RUN pip3 install --no-cache-dir -U discord jishaku psutil

@@ -7,7 +7,7 @@ services:
     volumes:
       - "./discord.js/:/app"
     environment:
-      - "DISCORD_TOKEN=DISCORD.JS_TOKEN_HERE"
+      - "DISCORD_TOKEN=tokeypokey"
   discordrb:
     build: ./discordrb/
     restart: on-failure
@@ -15,7 +15,7 @@ services:
     volumes:
       - "./discordrb/:/app"
     environment:
-      - "DISCORD_TOKEN=DISCORDRB_TOKEN_HERE"
+      - "DISCORD_TOKEN=tokeypokey"
   eris:
     build: ./eris/
     restart: on-failure
@@ -23,7 +23,7 @@ services:
     volumes:
       - "./eris/:/app"
     environment:
-      - "DISCORD_TOKEN=ERIS_TOKEN_HERE"
+      - "DISCORD_TOKEN=tokeypokey"
   discordgo:
     build: ./discordgo/
     restart: on-failure
@@ -31,7 +31,7 @@ services:
     volumes:
       - "./discordgo/:/app"
     environment:
-      - "DISCORD_TOKEN=DISCORDGO_TOKEN_HERE"
+      - "DISCORD_TOKEN=tokeypokey"
   discordpy:
     build: ./discord.py/
     restart: on-failure
@@ -41,4 +41,12 @@ services:
     environment:
       - "JISHAKU_HIDE=True"
       - "JISHAKU_NO_UNDERSCORE=True"
-      - "DISCORD_TOKEN=DISCORD.PY_TOKEN_HERE"
+      - "DISCORD_TOKEN=tokeypokey"
+  placeholders:
+    build: ./placeholders/
+    restart: on-failure
+    entrypoint: python3 -u /app/main.py
+    volumes:
+      - "./placeholders/:/app"
+    environment:
+      - "DISCORD_TOKENS=[\"tokeypokey\",\"tokeypokey\"]"
