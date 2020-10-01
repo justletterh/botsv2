@@ -9,4 +9,4 @@ services:
     environment:
       - "JISHAKU_HIDE=True"
       - "JISHAKU_NO_UNDERSCORE=True"
-      - "DISCORD_TOKEN=PUT_BOT_TOKEN_HERE"
+      - "DISCORD_TOKEN=NzU4NTQ0MzE0MzA5MDE3NjIz.X2wfcQ.hua_KKq59y0TTvFCyS5vi8pMm8U"

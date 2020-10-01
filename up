@@ -1,0 +1,24 @@
+#!/bin/bash
+SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd $SP
+docker-compose down
+docker-compose up -d
+if !(test -d "./logs"); then
+    mkdir ./logs
+fi
+l=("discord.py" "discordgo" "discord.js" "eris" "discordrb")
+for i in ${l[@]}; do
+    ii="bots_${i//./}_1"
+    i="$i.log"
+    f="./logs/$i"
+    if test -f $f; then
+        rm $f
+        touch $f
+    fi
+    docker logs -f $ii &> $f &
+done
+if test -f "./logs/all.log"; then
+    rm ./logs/all.log
+    touch ./logs/all.log
+fi
+docker-compose logs -f --no-color &> ./logs/all.log &

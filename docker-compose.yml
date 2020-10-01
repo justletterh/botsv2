@@ -1,0 +1,44 @@
+version: "3"
+services:
+  discordjs:
+    build: ./discord.js/
+    restart: on-failure
+    entrypoint: node /app/discord.js.js
+    volumes:
+      - "./discord.js/:/app"
+    environment:
+      - "DISCORD_TOKEN=DISCORD.JS_TOKEN_HERE"
+  discordrb:
+    build: ./discordrb/
+    restart: on-failure
+    entrypoint: ruby /app/discordrb.rb
+    volumes:
+      - "./discordrb/:/app"
+    environment:
+      - "DISCORD_TOKEN=DISCORDRB_TOKEN_HERE"
+  eris:
+    build: ./eris/
+    restart: on-failure
+    entrypoint: node /app/eris.js
+    volumes:
+      - "./eris/:/app"
+    environment:
+      - "DISCORD_TOKEN=ERIS_TOKEN_HERE"
+  discordgo:
+    build: ./discordgo/
+    restart: on-failure
+    entrypoint: go run /app/discordgo.go
+    volumes:
+      - "./discordgo/:/app"
+    environment:
+      - "DISCORD_TOKEN=DISCORDGO_TOKEN_HERE"
+  discordpy:
+    build: ./discord.py/
+    restart: on-failure
+    entrypoint: python3 -u /app/discord.py.py
+    volumes:
+      - "./discord.py/:/app"
+    environment:
+      - "JISHAKU_HIDE=True"
+      - "JISHAKU_NO_UNDERSCORE=True"
+      - "DISCORD_TOKEN=DISCORD.PY_TOKEN_HERE"

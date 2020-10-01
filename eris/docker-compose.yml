@@ -8,4 +8,4 @@ services:
       - "./:/app"
       - "./files:/package"
     environment:
-      - "DISCORD_TOKEN=PUT_BOT_TOKEN_HERE"
+      - "DISCORD_TOKEN=NzU4NzQ0MTM5Nzg4NzEzOTg0.X2zZiw.SIqfMYauoyfkbvB9Jt8Lj72otfU"
