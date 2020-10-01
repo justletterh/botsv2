@@ -49,4 +49,4 @@ services:
     volumes:
       - "./placeholders/:/app"
     environment:
-      - "DISCORD_TOKENS=[\"tokeypokey\",\"tokeypokey\"]"
+      - "DISCORD_TOKENS=[\"tokeypokey\",\"tokeypokey\",\"tokeypokey\"]"
