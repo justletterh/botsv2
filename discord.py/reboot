@@ -1,8 +1,0 @@
-#!/bin/bash
-SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-echo stopping...
-docker-compose down
-echo starting...
-docker-compose -f $SP/docker-compose.yml up -d
-rm ../logs/discord.py.log&&touch ../logs/discord.py.log
-docker logs -f discordpy_bot_1 &> ../logs/discord.py.log &

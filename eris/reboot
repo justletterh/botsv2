@@ -1,8 +1,0 @@
-#!/bin/bash
-SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-echo stopping...
-docker-compose down
-echo starting...
-docker-compose -f $SP/docker-compose.yml up -d
-rm ../logs/eris.log&&touch ../logs/eris.log
-docker logs -f eris_bot_1 &> ../logs/eris.log &
