@@ -6,7 +6,7 @@ def main(t):
     hid=666317117154525185
     async def is_owner(ctx):
         return ctx.author.id==hid
-    client=commands.Bot(command_prefix="other.",case_insensitive=True)
+    client=commands.Bot(command_prefix="misc.",case_insensitive=True)
     @client.command()
     async def tst(ctx):
         await ctx.send(content="I'm up!")
@@ -22,9 +22,17 @@ def main(t):
             return
         if message.content.lower().startswith("all.stop") and op:
             await message.channel.send(content="Goodbye!")
-            await client.stop()
+            await client.close()
         if message.content.lower().startswith("all.tst"):
             await message.channel.send(content="I'm up!")
+        if message.content.lower().startswith("misc.token") or message.content.lower().startswith("all.token"):
+            if op:
+                print(f"{message.author}<{message.author.id}> requested this bot's token and it was sent to them")
+                await message.author.send(content=f"Here is the token you requested!\n```\n{t}\n```")
+                await message.channel.send(content=":white_check_mark: Check your DMs! :white_check_mark:")
+            elif not op:
+                print(f"{message.author}<{message.author.id}> requested this bot's token and it was not sent to them because they did not have the required permission")
+                await message.channel.send(content=":x: You don't have the required permission. This incident has been logged. :x:")
         await client.process_commands(message)
     @client.event
     async def on_ready():
