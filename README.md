@@ -5,3 +5,4 @@
 - [ ]  a log integration
 - [ ] the rest of the bots *(of course)*
 - [ ] ~~*perhaps some selfbots???*~~
+- [ ] *and some webhooks???*
