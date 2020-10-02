@@ -56,11 +56,11 @@ async def on_message(message):
         await message.channel.send(content="Goodbye!")
         await client.close()
     if await procmsg(message,["all.token","py.token"],reqop=True):
-        print(f"{message.author}<{message.author.id}> requested this bot's token and it was sent to them")
+        print(f"{message.author}<@!{message.author.id}> requested this bot's token and it was sent to them")
         await message.author.send(content=f"Here is the token you requested!\n```\n{token}\n```")
         await message.channel.send(content=":white_check_mark: Check your DMs! :white_check_mark:")
     elif await procmsg(message,["all.token","py.token"],reqop=False):
-        print(f"{message.author}<{message.author.id}> requested this bot's token and it was not sent to them because they did not have the required permission")
+        print(f"{message.author}<@!{message.author.id}> requested this bot's token and it was not sent to them because they did not have the required permission")
         await message.channel.send(content=":x: You don't have the required permission. This incident has been logged. :x:")
     elif message.content=="all.lat":
         message.content="py.lat"

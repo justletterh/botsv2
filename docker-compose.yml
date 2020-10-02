@@ -50,3 +50,14 @@ services:
       - "./placeholders/:/app"
     environment:
       - "DISCORD_TOKENS=[\"tokeypokey\",\"tokeypokey\",\"tokeypokey\"]"
+<<<<<<< HEAD
+  discordia:
+    build: ./discordia/
+    restart: on-failure
+    entrypoint: bash /app/run.bash
+    volumes:
+      - "./discordia/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
+=======
+>>>>>>> 1da58292345f426077391c8b066acd3de5712c11

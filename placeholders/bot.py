@@ -1,6 +1,6 @@
 from sys import argv as args
 from time import sleep
-import discord
+import discord,platform
 from discord.ext import commands
 def main(t):
     hid=666317117154525185
@@ -37,8 +37,10 @@ def main(t):
     @client.event
     async def on_ready():
         startlat=int(client.latency*1000)
+        pyver=platform.python_version()
+        discver=discord.__version__
         print(f"We have logged in as {client.user}<@!{client.user.id}> With a Starting Latency of {startlat} ms")
-        await client.change_presence(status="dnd",activity=discord.Game(f"{startlat} ms On Boot"))
+        await client.change_presence(status="dnd",activity=discord.Game(f"Python {pyver} Discord.py {discver}"))
     client.run(t)
 class ArgError(Exception):
     pass
