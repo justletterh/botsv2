@@ -71,7 +71,7 @@ async function evalcmd(code){
 }
 bot.on("ready",()=>{
     if (!startlat) startlat=bot.shards.get(0).latency;
-    console.log(`We have logged in as ${bot.user.username}#${bot.user.discriminator}<@!${bot.user.id}> With a Starting Latency of ${Util.inspect(startlat)} ms`);
+    console.log(`We have logged in as ${bot.user.username}#${bot.user.discriminator}<@!${bot.user.id}>`);
     bot.editStatus("dnd",{name:`NodeJS ${nodever} Eris ${erisver}`});
 });
 bot.on("messageCreate",async(msg)=>{

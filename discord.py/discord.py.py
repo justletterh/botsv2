@@ -29,7 +29,7 @@ async def on_ready():
     jskver=jishaku.__version__
     vers={"Jishaku":jskver,"Discord.py":discver,"Python":pyver}
     startlat=int(client.latency*1000)
-    print(f"We have logged in as {client.user}<@!{client.user.id}> With a Starting Latency of {startlat} ms")
+    print(f"We have logged in as {client.user}<@!{client.user.id}>")
     await client.change_presence(status="dnd",activity=discord.Game(f"Python {pyver} Discord.py {discver}"))
 @client.event
 async def on_command_error(ctx, error):
@@ -40,7 +40,7 @@ async def on_message(message):
     if message.author.id==client.user.id:
         return
     op=await is_owner(message)
-    if await procmsg(message,["py.ver","all.ver","py.version","all.version"],reqop=True):
+    if await procmsg(message,["py.ver","all.ver","py.version","all.version"],reqop=False):
         cont=["```"]
         for v in vers:
             cont.append(f"{v} Version:{(25-len(v))*' '}{vers[v]}")

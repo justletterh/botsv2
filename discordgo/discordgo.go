@@ -51,9 +51,8 @@ func main() {
 func ready(s *discordgo.Session, event *discordgo.Ready) {
     g:=discordgo.Game {Name: fmt.Sprintf("GoLang %s DiscordGo %v",get_gover(),discordgo.VERSION), Type: discordgo.GameTypeGame}
     usd := discordgo.UpdateStatusData{AFK: false, Status: "dnd",Game:&g}
-    startlat:=50
 	s.UpdateStatusComplex(usd)
-    fmt.Printf("We have logged in as %s#%s<@!%s> With a Starting Latency of %v ms\n",s.State.User.Username,s.State.User.Discriminator,s.State.User.ID,startlat)
+    fmt.Printf("We have logged in as %s#%s<@!%s>\n",s.State.User.Username,s.State.User.Discriminator,s.State.User.ID)
 }
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.ID == s.State.User.ID {

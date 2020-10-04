@@ -57,7 +57,7 @@ client.on('ready', () => {
     if (startlat==-1){
         startlat=50;
     }
-    console.log(`We have logged in as ${client.user.username}#${client.user.discriminator}<@!${client.user.id}> With a Starting Latency of ${Util.inspect(startlat)} ms`);
+    console.log(`We have logged in as ${client.user.username}#${client.user.discriminator}<@!${client.user.id}>`);
     client.user.setPresence({activity:{name:`NodeJS ${nodever} Discord.js ${dver}`},status:'dnd'});
 });
 client.on('message',async(msg)=>{
