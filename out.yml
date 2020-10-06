@@ -1,0 +1,79 @@
+services:
+  discordgo:
+    build: ./discordgo/
+    entrypoint: go run /app/discordgo.go
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
+    pid: host
+    restart: on-failure
+    volumes: ['./discordgo/:/app']
+  discordia:
+    build: ./discordia/
+    entrypoint: bash /app/run.bash
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
+    pid: host
+    restart: 'no'
+    volumes: ['./discordia/:/app']
+  discordjl:
+    build: ./discord.jl/
+    entrypoint: bash /app/run.bash
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
+    pid: host
+    restart: on-failure
+    volumes: ['./discord.jl/:/app']
+  discordjs:
+    build: ./discord.js/
+    entrypoint: node /app/discord.js.js
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
+    pid: host
+    restart: on-failure
+    volumes: ['./discord.js/:/app']
+  discordpy:
+    build: ./discord.py/
+    entrypoint: python3 -u /app/discord.py.py
+    environment: [JISHAKU_HIDE=True, JISHAKU_NO_UNDERSCORE=True, '"DISCORD_TOKEN=bot_token_goes_here"']
+    pid: host
+    restart: on-failure
+    volumes: ['./discord.py/:/app']
+  discordrb:
+    build: ./discordrb/
+    entrypoint: ruby /app/discordrb.rb
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
+    pid: host
+    restart: on-failure
+    volumes: ['./discordrb/:/app']
+  eris:
+    build: ./eris/
+    entrypoint: node /app/eris.js
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
+    pid: host
+    restart: on-failure
+    volumes: ['./eris/:/app']
+  insecure_dummy:
+    build: ./dummies/
+    entrypoint: python3 -u /app/bot.py
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=insec.]
+    pid: host
+    restart: on-failure
+    volumes: ['./dummies/:/app']
+  logging_dummy:
+    build: ./dummies/
+    entrypoint: python3 -u /app/bot.py
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=log.]
+    pid: host
+    restart: on-failure
+    volumes: ['./dummies/:/app']
+  misc_dummy:
+    build: ./dummies/
+    entrypoint: python3 -u /app/bot.py
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=misc.]
+    pid: host
+    restart: on-failure
+    volumes: ['./dummies/:/app']
+  secure_dummy:
+    build: ./dummies/
+    entrypoint: python3 -u /app/bot.py
+    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=sec.]
+    pid: host
+    restart: on-failure
+    volumes: ['./dummies/:/app']
+version: '3.3'

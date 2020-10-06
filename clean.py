@@ -1,16 +1,14 @@
-import yaml
 f=open("docker-compose.yml","r+")
-dat=yaml.safe_load(f.read())
+dat=f.read()
 f.close()
-for i in dat['services']:
-    oi=i
-    i=dat['services'][i]
-    count=0
-    for ii in i['environment']:
-        if ii.startswith("DISCORD_TOKEN="):
-            dat['services'][oi]['environment'][count]='"DISCORD_TOKEN=bot_token_goes_here"'
-        count=count+1
-f=open("out.yml","w+")
-f.write(yaml.dump(dat))
+dat=dat.split("\n")
+ss="DISCORD_TOKEN="
+out=[]
+for i in dat:
+  if ss in i:
+    i=i.replace(i[i.find(ss)+len(ss):len(i)-1],"tokeypokey")
+  out.append(i)
+f=open("clean.yml","w+")
+f.write("\n".join(out))
 f.close()
 print("Done!!!")

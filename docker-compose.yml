@@ -1,79 +1,118 @@
+version: "2.3"
 services:
-  discordgo:
-    build: ./discordgo/
-    entrypoint: go run /app/discordgo.go
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
-    pid: host
-    restart: on-failure
-    volumes: ['./discordgo/:/app']
-  discordia:
-    build: ./discordia/
-    entrypoint: bash /app/run.bash
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
-    pid: host
-    restart: 'no'
-    volumes: ['./discordia/:/app']
-  discordjl:
-    build: ./discord.jl/
-    entrypoint: bash /app/run.bash
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
-    pid: host
-    restart: on-failure
-    volumes: ['./discord.jl/:/app']
   discordjs:
     build: ./discord.js/
+    restart: on-failure
+    pid: "host"
     entrypoint: node /app/discord.js.js
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
-    pid: host
-    restart: on-failure
-    volumes: ['./discord.js/:/app']
-  discordpy:
-    build: ./discord.py/
-    entrypoint: python3 -u /app/discord.py.py
-    environment: [JISHAKU_HIDE=True, JISHAKU_NO_UNDERSCORE=True, '"DISCORD_TOKEN=bot_token_goes_here"']
-    pid: host
-    restart: on-failure
-    volumes: ['./discord.py/:/app']
+    volumes:
+      - "./discord.js/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
   discordrb:
     build: ./discordrb/
-    entrypoint: ruby /app/discordrb.rb
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
-    pid: host
+    pid: "host"
     restart: on-failure
-    volumes: ['./discordrb/:/app']
+    entrypoint: ruby /app/discordrb.rb
+    volumes:
+      - "./discordrb/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
   eris:
     build: ./eris/
+    pid: "host"
+    restart: on-failure
     entrypoint: node /app/eris.js
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"']
-    pid: host
+    volumes:
+      - "./eris/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
+  discordgo:
+    build: ./discordgo/
     restart: on-failure
-    volumes: ['./eris/:/app']
-  insecure_dummy:
-    build: ./dummies/
-    entrypoint: python3 -u /app/bot.py
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=insec.]
-    pid: host
+    pid: "host"
+    entrypoint: go run /app/discordgo.go
+    volumes:
+      - "./discordgo/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
+  discordpy:
+    build: ./discord.py/
     restart: on-failure
-    volumes: ['./dummies/:/app']
+    pid: "host"
+    entrypoint: python3 -u /app/discord.py.py
+    volumes:
+      - "./discord.py/:/app"
+    environment:
+      - "JISHAKU_HIDE=True"
+      - "JISHAKU_NO_UNDERSCORE=True"
+      - "DISCORD_TOKEN=tokeypokey"
+  discordia:
+    build: ./discordia/
+    restart: "no"
+    pid: "host"
+    entrypoint: bash /app/run.bash
+    volumes:
+      - "./discordia/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
   logging_dummy:
     build: ./dummies/
-    entrypoint: python3 -u /app/bot.py
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=log.]
-    pid: host
     restart: on-failure
-    volumes: ['./dummies/:/app']
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./dummies/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_PFX=log."
   misc_dummy:
     build: ./dummies/
-    entrypoint: python3 -u /app/bot.py
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=misc.]
-    pid: host
     restart: on-failure
-    volumes: ['./dummies/:/app']
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./dummies/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_PFX=misc."
+  insecure_dummy:
+    build: ./dummies/
+    restart: on-failure
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./dummies/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_PFX=insec."
+  discordjl:
+    build: ./discord.jl/
+    restart: always
+    cpus: 0.625
+    pid: "host"
+    entrypoint: bash /app/run.bash
+    volumes:
+      - "./discord.jl/:/app"
+    environment:
+      - "DISCORD_TOKEN=tokeypokey"
   secure_dummy:
     build: ./dummies/
+    restart: on-failure
+    pid: "host"
     entrypoint: python3 -u /app/bot.py
-    environment: ['"DISCORD_TOKEN=bot_token_goes_here"', DISCORD_PFX=sec.]
+    volumes:
+      - "./dummies/:/app"
+    environment: 
+    - "DISCORD_TOKEN=tokeypokey"
+    - "DISCORD_PFX=sec."
+  discordcr:
+    build: ./discordcr/
+    entrypoint: bash /app/run.bash
+    environment:
+    - "DISCORD_TOKEN=tokeypokey"
+    - "DISCORD_ID=758719131561754624"
     pid: host
     restart: on-failure
-    volumes: ['./dummies/:/app']
-version: '3.3'
+    volumes:
+    - "./discordcr/:/app"
