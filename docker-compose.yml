@@ -1,44 +1,44 @@
-version: "2.3"
+version: "2.4"
 services:
   discordjs:
     build: ./discord.js/
-    restart: on-failure
+    restart: always
     pid: "host"
     entrypoint: node /app/discord.js.js
     volumes:
       - "./discord.js/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${JS}"
   discordrb:
     build: ./discordrb/
     pid: "host"
-    restart: on-failure
+    restart: always
     entrypoint: ruby /app/discordrb.rb
     volumes:
       - "./discordrb/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${RB}"
   eris:
     build: ./eris/
     pid: "host"
-    restart: on-failure
+    restart: always
     entrypoint: node /app/eris.js
     volumes:
       - "./eris/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${ERIS}"
   discordgo:
     build: ./discordgo/
-    restart: on-failure
+    restart: always
     pid: "host"
     entrypoint: go run /app/discordgo.go
     volumes:
       - "./discordgo/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${GO}"
   discordpy:
     build: ./discord.py/
-    restart: on-failure
+    restart: always
     pid: "host"
     entrypoint: python3 -u /app/discord.py.py
     volumes:
@@ -46,73 +46,137 @@ services:
     environment:
       - "JISHAKU_HIDE=True"
       - "JISHAKU_NO_UNDERSCORE=True"
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${PY}"
   discordia:
     build: ./discordia/
-    restart: "no"
+    restart: always
     pid: "host"
     entrypoint: bash /app/run.bash
     volumes:
       - "./discordia/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${LUA}"
   logging_dummy:
     build: ./dummies/
-    restart: on-failure
+    restart: always
     pid: "host"
     entrypoint: python3 -u /app/bot.py
     volumes:
       - "./dummies/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${LD}"
       - "DISCORD_PFX=log."
   misc_dummy:
     build: ./dummies/
-    restart: on-failure
+    restart: always
     pid: "host"
     entrypoint: python3 -u /app/bot.py
     volumes:
       - "./dummies/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${MISC}"
       - "DISCORD_PFX=misc."
   insecure_dummy:
     build: ./dummies/
-    restart: on-failure
+    restart: always
     pid: "host"
     entrypoint: python3 -u /app/bot.py
     volumes:
       - "./dummies/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${INSD}"
       - "DISCORD_PFX=insec."
   discordjl:
     build: ./discord.jl/
-    restart: on-failure
-    cpus: 0.5
+    restart: always
     pid: "host"
     entrypoint: bash /app/run.bash
     volumes:
       - "./discord.jl/:/app"
     environment:
-      - "DISCORD_TOKEN=tokeypokey"
+      - "DISCORD_TOKEN=${JL}"
   secure_dummy:
     build: ./dummies/
-    restart: on-failure
+    restart: always
     pid: "host"
     entrypoint: python3 -u /app/bot.py
     volumes:
       - "./dummies/:/app"
     environment: 
-    - "DISCORD_TOKEN=tokeypokey"
+    - "DISCORD_TOKEN=${SECD}"
     - "DISCORD_PFX=sec."
+  garbage_dummy:
+    build: ./dummies/
+    restart: always
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./dummies/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${TRASHD}"
+    - "DISCORD_PFX=trash."
   discordcr:
     build: ./discordcr/
     entrypoint: bash /app/run.bash
     environment:
-    - "DISCORD_TOKEN=tokeypokey"
+    - "DISCORD_TOKEN=${CR}"
     - "DISCORD_ID=758719131561754624"
     pid: host
-    restart: on-failure
+    restart: always
     volumes:
     - "./discordcr/:/app"
+  potato_dummy:
+    build: ./dummies/
+    restart: always
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./dummies/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${POTATE}"
+    - "DISCORD_PFX=potato."
+  rpc1:
+    build: ./rpc1/
+    restart: always
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./rpc1/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${RPC1}"
+  rpc2:
+    build: ./rpc2/
+    restart: always
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./rpc2/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${RPC2}"
+  rpc3:
+    build: ./rpc3/
+    restart: always
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./rpc3/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${RPC3}"
+  rpc4:
+    build: ./rpc4/
+    restart: always
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./rpc4/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${RPC4}"
+  detriusjs:
+    build: ./detriusjs/
+    restart: always
+    pid: "host"
+    entrypoint: bash /app/run.bash
+    volumes:
+      - "./detriusjs/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${TS}"

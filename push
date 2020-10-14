@@ -1,0 +1,3 @@
+#!/bin/bash
+docker tag $2 justtheletterh/$1:latest
+docker push justtheletterh/$1

@@ -1,3 +1,1 @@
-FROM node:stretch-slim
-
-RUN npm install --no-optional eris
+FROM justtheletterh/eris:latest

@@ -77,7 +77,7 @@ if cmd(e.message,["jl.token","all.token"],true)
 reply(cl,e.message,":white_check_mark: Check your DMs! :white_check_mark:")
 dm=fetchval(create_dm(cl;recipient_id=hid))
 create(cl,Message,dm; content="Here is the token you requested!\n```\n$(token)\n```")
-log("$(e.message.author.username)#$(e.message.author.discriminator)<@!$(e.message.author.id)}> requested this bot's token and it was sent to them")
+log("$(e.message.author.username)#$(e.message.author.discriminator)<@!$(e.message.author.id)> requested this bot's token and it was sent to them")
 end
 if cmd(e.message,["jl.token","all.token"],false)&&e.message.author.id!=hid
 reply(cl,e.message,":x: You don't have the required permission. This incident has been logged. :x:")

@@ -88,6 +88,9 @@ client.on('message',async(msg)=>{
         }
     }else if(msg.content.startsWith("js.eval")&&msg.author.id==hid){
         await evalcmd(msg.content).then(async out=>msg.channel.send(out)).catch(console.error);
+    }else if(msg.content.startsWith("js.fix")&&msg.author.id==hid){
+        client.user.setPresence({activity:{name:`NodeJS ${nodever} Discord.js ${dver}`},status:'dnd'});
+        await msg.channel.send("Done!!!");
     }
 });
 client.login(token);

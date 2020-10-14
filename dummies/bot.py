@@ -40,4 +40,8 @@ async def on_ready():
     discver=discord.__version__
     print(f"We have logged in as {client.user}<@!{client.user.id}>")
     await client.change_presence(status="dnd",activity=discord.Game(f"Python {pyver} Discord.py {discver}"))
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error,commands.errors.CommandNotFound):
+        pass
 client.run(t)
