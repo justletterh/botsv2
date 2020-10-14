@@ -88,8 +88,8 @@ services:
       - "DISCORD_PFX=insec."
   discordjl:
     build: ./discord.jl/
-    restart: always
-    cpus: 0.625
+    restart: on-failure
+    cpus: 0.5
     pid: "host"
     entrypoint: bash /app/run.bash
     volumes:
