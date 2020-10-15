@@ -180,3 +180,12 @@ services:
       - "./detriusjs/:/app"
     environment: 
     - "DISCORD_TOKEN=${TS}"
+  dimscord:
+    build: ./dimscord/
+    restart: always
+    pid: "host"
+    entrypoint: nim c -r -d:ssl --warnings:off --hints:off /app/dimscordnim.nim
+    volumes:
+      - "./dimscord/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${NIM}"

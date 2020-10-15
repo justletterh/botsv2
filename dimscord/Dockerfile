@@ -1,0 +1,1 @@
+FROM justtheletterh/dimscord:latest

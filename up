@@ -5,7 +5,7 @@ docker-compose up -d
 if !(test -d "./logs"); then
     mkdir ./logs
 fi
-l=("discord.py" "discordgo" "discord.js" "eris" "discordrb" "discordia" "logging_dummy" "misc_dummy" "insecure_dummy" "discord.jl" "discordcr" "garbage_dummy" "rpc1" "rpc2" "rpc3" "rpc4" "detriusjs")
+l=("discord.py" "discordgo" "discord.js" "eris" "discordrb" "discordia" "logging_dummy" "misc_dummy" "insecure_dummy" "discord.jl" "discordcr" "garbage_dummy" "rpc1" "rpc2" "rpc3" "rpc4" "detriusjs" "dimscord")
 for i in ${l[@]}; do
     ii="bots_${i//./}_1"
     i="$i.log"
