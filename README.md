@@ -6,3 +6,5 @@
 - [ ] the rest of the bots *(of course)*
 - [x] ~~*perhaps some selfbots???*~~
 - [ ] *and some webhooks???*
+- [ ] poper documentation
+- [ ] *mabye split the docker-composes?*

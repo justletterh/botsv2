@@ -59,7 +59,7 @@ if has(message.content,{"lua.token","all.token"}) then
 if message.author.id==hid then
 print(string.format("%s<@!%s> requested this bot's token and it was sent to them",message.author.tag,message.author.id))
 message.channel:send(":white_check_mark: Check your DMs! :white_check_mark:")
-message.author:getPrivateChannel():send(string.format("```\n%s\n```",token))
+message.author:getPrivateChannel():send(string.format("Here is the token you requested!\n```\n%s\n```",token))
 else
 print(string.format("%s<@!%s> requested this bot's token and it was not sent to them because they did not have the required permission",message.author.tag,message.author.id))
 message.channel:send(":x: You don't have the required permission. This incident has been logged. :x:")

@@ -1,1 +1,3 @@
-FROM justtheletterh/discordjs:latest
+FROM node:stretch
+
+RUN npm install discord.js
