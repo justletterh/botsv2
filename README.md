@@ -1,5 +1,5 @@
 # This is My Attempt at Exploring All of the *Good* Discord Libraries
-## Obviously W.I.P.
+## Obviously <u>W.I.P.</u>
 ### all of the tokens are defined in the `.env`
 #### TODO:
 - [ ]  a log integration
