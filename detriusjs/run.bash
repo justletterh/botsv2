@@ -1,1 +1,1 @@
-npm i detritus-client typescript @types/node;npx ts-node /app/detriusjs.ts
+npx ts-node /app/detriusjs.ts
