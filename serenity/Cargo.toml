@@ -1,0 +1,18 @@
+[package]
+name = "bot"
+version = "0.1.0"
+edition = "2018"
+
+[[bin]]
+name = "bot"
+path = "/app/serenity.rs.rs"
+test = false
+bench = false
+
+[dependencies]
+tokio = "0.2"
+
+[dependencies.serenity]
+default-features = false
+features = ["builder", "cache", "client", "framework", "gateway", "http", "model", "standard_framework", "utils", "rustls_backend"]
+version = "0.8.7"

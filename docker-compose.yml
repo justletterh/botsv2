@@ -189,3 +189,21 @@ services:
       - "./dimscord/:/app"
     environment: 
     - "DISCORD_TOKEN=${NIM}"
+  discordphp:
+    build: ./discordphp/
+    restart: always
+    pid: "host"
+    entrypoint: php /app/discordphp.php
+    volumes:
+      - "./discordphp/:/app"
+    environment: 
+    - "DISCORD_TOKEN=${PHP}"
+  serenity:
+    build: ./serenity/
+    restart: always
+    pid: "host"
+    entrypoint: bash /app/run.bash
+    volumes:
+      - "./serenity/:/app"
+    environment:
+      - "DISCORD_TOKEN=${RS}"
