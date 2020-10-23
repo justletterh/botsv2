@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+f=open('.env',"r+")
+dat=f.read()
+f.close()
+dat=dat.split("\n")
+o=[]
+for i in dat:
+    i=i.split('=')
+    if i[0].endswith("ID"):
+        o.append(f"{i[0]}=ID")
+    else:
+        o.append(f"{i[0]}=TOKEN")
+f=open(".env","w+")
+f.write("\n".join(o))
+f.close()
+from os import system as cmd
+cmd("python3 -u sync>>/dev/null")
+print("Done!!!")

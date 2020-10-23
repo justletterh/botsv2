@@ -1,0 +1,46 @@
+#!/usr/bin/python3
+from os.path import join as jfp
+from shutil import copyfile as cp
+def sync(dirs):
+    for d in dirs:
+        cp(".env",jfp(".",d,".env"))
+def env2py(*,ifn=".env",ofn="env.py",indir=None,outdir=None):
+    if indir!=None and type(indir)==str:
+        ifn=jfp(".",indir,ifn)
+    if outdir!=None and type(outdir)==str:
+        ofn=jfp(".",outdir,ofn)
+    f=open(ifn,"r+")
+    s=f.read()
+    f.close()
+    s=s.split("\n")
+    o=[]
+    for i in s:
+        if i.replace(" ","")!="":
+            o.append(i)
+    s=o
+    o=[]
+    for i in s:
+        i=i.replace("\"",r"\"").split("=")
+        o.append(f'{i[0]}="{i[1]}"')
+    s="\n".join(o)+"\n"
+    f=open(ofn,"w+")
+    f.write(s)
+    f.close()
+    return s
+def main(copydirs,pydir):
+    if (type(copydirs)!=list and type(copydirs)!=tuple) or type(pydir)!=str:
+        err=True
+        if type(copydirs)==str:
+            err=False
+            copydirs=[copydirs]
+        if (type(pydir)==list or type(pydir)==tuple) and len(pydir)==1:
+            if type(pydir[0])==str:
+                err=False
+                pydir=pydir[0]
+        if err:
+            raise TypeError
+    sync(copydirs)
+    env2py(outdir=pydir)
+    print("Synced.")
+if __name__ == "__main__":
+    main(["bots","clones"],"containerless")

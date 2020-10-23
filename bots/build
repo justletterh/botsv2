@@ -1,0 +1,8 @@
+#!/bin/bash
+SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd $SP
+if [ "$1" = "--full" ]; then
+    docker-compose build --force-rm --pull --no-cache
+else
+    docker-compose build --force-rm
+fi

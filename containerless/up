@@ -1,0 +1,8 @@
+#!/bin/bash
+SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd $SP
+export JISHAKU_HIDE=True
+export JISHAKU_NO_UNDERSCORE=True
+rm -f logs.txt
+cd control
+python3 -u ./bot.py>>../logs.txt&

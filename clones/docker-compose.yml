@@ -1,0 +1,74 @@
+version: "3"
+services:
+  pluralkit_bot:
+    image: pluralkit
+    build: ./pluralkit/
+    command: ["bin/PluralKit.Bot.dll"]
+    environment:
+      - "PluralKit:Database=Host=pluralkit_db;Username=postgres;Password=postgres;Database=postgres;Maximum Pool Size=1000"
+      - "PluralKit:InfluxUrl=http://pluralkit_influx:8086"
+      - "PluralKit:InfluxDb=pluralkit"
+      - "PluralKit:LogDir=/var/log/pluralkit"
+      - "PluralKit:Bot:Token=${PK}"
+    volumes:
+      - "./pluralkit/pluralkit.conf:/app/pluralkit.conf:ro"
+      - "/var/log/pluralkit:/var/log/pluralkit"
+    restart: unless-stopped
+  pluralkit_api:
+    image: pluralkit
+    command: ["bin/PluralKit.API.dll"]
+    environment:
+      - "PluralKit:Database=Host=pluralkit_db;Username=postgres;Password=postgres;Database=postgres;Maximum Pool Size=1000"
+    ports:
+      - "127.0.0.1:2838:5000"
+    restart: unless-stopped
+  pluralkit_db:
+    image: postgres:12-alpine
+    volumes:
+      - "pk_db_data:/var/lib/postgresql/data"
+      - "/var/run/postgresql:/var/run/postgresql"
+    command: ["postgres", "-c", "max-connections=1000", "-c", "timezone=Etc/UTC", "-c", "max_wal_size=1GB", "-c", "min_wal_size=80MB", "-c", "shared_buffers=128MB"]
+    environment:
+      - "POSTGRES_PASSWORD=postgres"
+    restart: unless-stopped
+  pluralkit_influx:
+    image: influxdb:1.8
+    volumes:
+      - "pk_influx_data:/var/lib/influxdb"
+    ports:
+      - 127.0.0.1:2839:8086
+    restart: unless-stopped
+
+  tupperbox_redis:
+    image: redis:alpine
+    restart: unless-stopped
+  tupperbox_postgres:
+    image: postgres:12-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=tupperbox
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./tupperbox/db:/var/lib/postgresql/data
+    command: ["postgres", "-c", "max-connections=1000", "-c", "timezone=Etc/UTC", "-c", "max_wal_size=1GB", "-c", "min_wal_size=80MB","-c", "shared_buffers=128MB"]
+  tupperbox_bot:
+    build: ./tupperbox/
+    restart: unless-stopped
+    volumes:
+      - ./.env:/app/.env:ro
+    command: /app/index
+    environment:
+      - "PGUSER=tupperbox"
+      - "PGHOST=tupperbox_postgres"
+      - "PGDATABASE=postgres"
+      - "PGPASSWORD=postgres"
+      - "PGPORT=5432"
+      - "REDISURL=redis://tupperbox_redis:6379"
+      - "DEFAULT_PREFIX=tul."
+      - "DEFAULT_LANG=tupper"
+      - "DISCORD_TOKEN=${TUL}"
+      - "DISCORD_OWNERID=${HID}"
+
+volumes:
+  pk_db_data:
+  pk_influx_data:

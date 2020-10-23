@@ -1,0 +1,8 @@
+#!/bin/bash
+SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd $SP
+if [ "$1" = "-f" ]; then
+    docker-compose logs -f
+else
+    docker-compose logs
+fi
