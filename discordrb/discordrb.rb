@@ -2,7 +2,7 @@ require 'discordrb'
 $stdout.sync=true
 token=ENV["DISCORD_TOKEN"]
 bot=Discordrb::Commands::CommandBot.new token: token, prefix: 'rb.', log_mode: :quiet
-hid=666317117154525185
+hid=ENV["HID"].to_i
 $hid=hid
 def lat(event)
 m=event.respond("```\nloading...\n```")

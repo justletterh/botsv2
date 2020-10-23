@@ -3,7 +3,6 @@ SP="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 cd $SP
 envup() {
   local file=$([ -z "$1" ] && echo ".env" || echo ".env.$1")
-
   if [ -f $file ]; then
     set -a
     source $file
@@ -18,5 +17,5 @@ export DISCORD_TOKEN=$CONTROLLER
 export JISHAKU_HIDE=True
 export JISHAKU_NO_UNDERSCORE=True
 cd control
-python3 -u ./bot.py &> ../logs/control.log &
+python3 -u ./bot.py&
 cd ..

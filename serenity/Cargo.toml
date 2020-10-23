@@ -3,12 +3,6 @@ name = "bot"
 version = "0.1.0"
 edition = "2018"
 
-[[bin]]
-name = "bot"
-path = "/app/serenity.rs.rs"
-test = false
-bench = false
-
 [dependencies]
 tokio = "0.2"
 

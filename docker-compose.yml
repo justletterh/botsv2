@@ -9,6 +9,7 @@ services:
       - "./discord.js/:/app"
     environment:
       - "DISCORD_TOKEN=${JS}"
+      - "HID=${HID}"
   discordrb:
     build: ./discordrb/
     pid: "host"
@@ -18,6 +19,7 @@ services:
       - "./discordrb/:/app"
     environment:
       - "DISCORD_TOKEN=${RB}"
+      - "HID=${HID}"
   eris:
     build: ./eris/
     pid: "host"
@@ -27,6 +29,7 @@ services:
       - "./eris/:/app"
     environment:
       - "DISCORD_TOKEN=${ERIS}"
+      - "HID=${HID}"
   discordgo:
     build: ./discordgo/
     restart: always
@@ -36,6 +39,7 @@ services:
       - "./discordgo/:/app"
     environment:
       - "DISCORD_TOKEN=${GO}"
+      - "HID=${HID}"
   discordpy:
     build: ./discord.py/
     restart: always
@@ -47,6 +51,7 @@ services:
       - "JISHAKU_HIDE=True"
       - "JISHAKU_NO_UNDERSCORE=True"
       - "DISCORD_TOKEN=${PY}"
+      - "HID=${HID}"
   discordia:
     build: ./discordia/
     restart: always
@@ -56,6 +61,7 @@ services:
       - "./discordia/:/app"
     environment:
       - "DISCORD_TOKEN=${LUA}"
+      - "HID=${HID}"
   logging_dummy:
     build: ./dummies/
     restart: always
@@ -66,6 +72,7 @@ services:
     environment:
       - "DISCORD_TOKEN=${LD}"
       - "DISCORD_PFX=log."
+      - "HID=${HID}"
   misc_dummy:
     build: ./dummies/
     restart: always
@@ -76,6 +83,7 @@ services:
     environment:
       - "DISCORD_TOKEN=${MISC}"
       - "DISCORD_PFX=misc."
+      - "HID=${HID}"
   insecure_dummy:
     build: ./dummies/
     restart: always
@@ -86,6 +94,7 @@ services:
     environment:
       - "DISCORD_TOKEN=${INSD}"
       - "DISCORD_PFX=insec."
+      - "HID=${HID}"
   discordjl:
     build: ./discord.jl/
     restart: always
@@ -95,6 +104,7 @@ services:
       - "./discord.jl/:/app"
     environment:
       - "DISCORD_TOKEN=${JL}"
+      - "HID=${HID}"
   secure_dummy:
     build: ./dummies/
     restart: always
@@ -103,8 +113,9 @@ services:
     volumes:
       - "./dummies/:/app"
     environment: 
-    - "DISCORD_TOKEN=${SECD}"
-    - "DISCORD_PFX=sec."
+      - "DISCORD_TOKEN=${SECD}"
+      - "DISCORD_PFX=sec."
+      - "HID=${HID}"
   garbage_dummy:
     build: ./dummies/
     restart: always
@@ -113,18 +124,20 @@ services:
     volumes:
       - "./dummies/:/app"
     environment: 
-    - "DISCORD_TOKEN=${TRASHD}"
-    - "DISCORD_PFX=trash."
+      - "DISCORD_TOKEN=${TRASHD}"
+      - "DISCORD_PFX=trash."
+      - "HID=${HID}"
   discordcr:
     build: ./discordcr/
     entrypoint: bash /app/run.bash
     environment:
     - "DISCORD_TOKEN=${CR}"
-    - "DISCORD_ID=758719131561754624"
+    - "DISCORD_ID=${CRID}"
+    - "HID=${HID}"
     pid: host
     restart: always
     volumes:
-    - "./discordcr/:/app"
+      - "./discordcr/:/app"
   potato_dummy:
     build: ./dummies/
     restart: always
@@ -133,8 +146,9 @@ services:
     volumes:
       - "./dummies/:/app"
     environment: 
-    - "DISCORD_TOKEN=${POTATE}"
-    - "DISCORD_PFX=potato."
+      - "DISCORD_TOKEN=${POTATE}"
+      - "DISCORD_PFX=potato."
+      - "HID=${HID}"
   rpc1:
     build: ./rpc1/
     restart: always
@@ -143,7 +157,8 @@ services:
     volumes:
       - "./rpc1/:/app"
     environment: 
-    - "DISCORD_TOKEN=${RPC1}"
+      - "DISCORD_TOKEN=${RPC1}"
+      - "HID=${HID}"
   rpc2:
     build: ./rpc2/
     restart: always
@@ -152,7 +167,8 @@ services:
     volumes:
       - "./rpc2/:/app"
     environment: 
-    - "DISCORD_TOKEN=${RPC2}"
+      - "DISCORD_TOKEN=${RPC2}"
+      - "HID=${HID}"
   rpc3:
     build: ./rpc3/
     restart: always
@@ -161,7 +177,8 @@ services:
     volumes:
       - "./rpc3/:/app"
     environment: 
-    - "DISCORD_TOKEN=${RPC3}"
+      - "DISCORD_TOKEN=${RPC3}"
+      - "HID=${HID}"
   rpc4:
     build: ./rpc4/
     restart: always
@@ -170,7 +187,8 @@ services:
     volumes:
       - "./rpc4/:/app"
     environment: 
-    - "DISCORD_TOKEN=${RPC4}"
+      - "DISCORD_TOKEN=${RPC4}"
+      - "HID=${HID}"
   detriusjs:
     build: ./detriusjs/
     restart: always
@@ -179,7 +197,8 @@ services:
     volumes:
       - "./detriusjs/:/app"
     environment: 
-    - "DISCORD_TOKEN=${TS}"
+      - "DISCORD_TOKEN=${TS}"
+      - "HID=${HID}"
   dimscord:
     build: ./dimscord/
     restart: always
@@ -188,7 +207,8 @@ services:
     volumes:
       - "./dimscord/:/app"
     environment: 
-    - "DISCORD_TOKEN=${NIM}"
+      - "DISCORD_TOKEN=${NIM}"
+      - "HID=${HID}"
   discordphp:
     build: ./discordphp/
     restart: always
@@ -197,13 +217,45 @@ services:
     volumes:
       - "./discordphp/:/app"
     environment: 
-    - "DISCORD_TOKEN=${PHP}"
+      - "DISCORD_TOKEN=${PHP}"
+      - "HID=${HID}"
   serenity:
-    build: ./serenity/
+    build: 
+      context: ./serenity/
+      args:
+        - "DISCORD_TOKEN=${RS}"
+        - "HID=${HID}"
+    restart: always
+    pid: "host"
+    entrypoint: /app/target/debug/bot
+    volumes:
+      - "./serenity/Cargo.toml:/app/Cargo.toml"
+      - "./serenity/serenity.rs.rs:/app/src/main.rs"
+      - "./serenity/run.bash:/run.bash"
+    environment:
+      - "DISCORD_TOKEN=${RS}"
+      - "HID=${HID}"
+  utilities:
+    build: ./utilities/
+    restart: always
+    pid: "host"
+    entrypoint: python3 -u /app/bot.py
+    volumes:
+      - "./utilities/:/app"
+    environment:
+      - "JISHAKU_HIDE=True"
+      - "JISHAKU_NO_UNDERSCORE=True"
+      - "DISCORD_TOKEN=${UTIL}"
+      - "HID=${HID}"
+  haxicord:
+    build: ./haxicord/
     restart: always
     pid: "host"
     entrypoint: bash /app/run.bash
     volumes:
-      - "./serenity/:/app"
+      - "./haxicord/run.bash:/app/run.bash"
+      - "./haxicord/Main.hx:/app/src/Main.hx"
+      - "./haxicord/build.hxml:/app/build.hxml"
     environment:
-      - "DISCORD_TOKEN=${RS}"
+      - "DISCORD_TOKEN=${HX}"
+      - "HID=${HID}"

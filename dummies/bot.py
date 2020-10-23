@@ -2,7 +2,7 @@ import discord,platform,os
 from discord.ext import commands
 t=os.environ['DISCORD_TOKEN']
 pfx=os.environ['DISCORD_PFX']
-hid=666317117154525185
+hid=int(os.environ['HID'])
 async def is_owner(ctx):
     return ctx.author.id==hid
 client=commands.Bot(command_prefix=pfx,case_insensitive=True)

@@ -2,7 +2,7 @@ import dimscord, asyncdispatch, times, options, os, system
 let
     token=getEnv("DISCORD_TOKEN")
     discord=newDiscordClient(token)
-    hid="666317117154525185"
+    hid=getEnv("HID")
     nimv=NimVersion
     discv=dimscord.libVer
 discord.events.on_ready = proc (s: Shard, r: Ready) {.async.} =

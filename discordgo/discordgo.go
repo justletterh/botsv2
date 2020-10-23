@@ -10,7 +10,7 @@ import (
     "strings"
     "time"
 )
-const hid="666317117154525185"
+var hid=os.Getenv("HID")
 var token=os.Getenv("DISCORD_TOKEN")
 const startlat="50"
 func anyin(s string, l []string) bool {

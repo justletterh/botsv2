@@ -9,14 +9,9 @@ cmdpfx="bots."
 client=commands.Bot(command_prefix=cmdpfx,case_insensitive=True,intents=discord.Intents.all())
 token=os.environ['DISCORD_TOKEN']
 token=str(token)
-hid=666317117154525185
+hid=int(os.environ['HID'])
 async def is_owner(ctx):
     return ctx.author.id==hid
-def logall(s):
-    f=open("../logs/all.log","a+")
-    f.write(f"control_1         | {s}")
-    f.close()
-    print(s)
 async def procmsg(message,pfx,reqop=False,nopfx=False):
     if type(pfx)==str:
         pfx=[pfx]
@@ -40,7 +35,6 @@ async def on_ready():
     jskver=jishaku.__version__
     vers={"Jishaku":jskver,"Discord.py":discver,"Python":pyver}
     startlat=int(client.latency*1000)
-    logall(f"We have logged in as {client.user}<@!{client.user.id}>")
     await client.change_presence(status="dnd",activity=discord.Game(f"Python {pyver} Discord.py {discver}"))
 @client.event
 async def on_command_error(ctx, error):

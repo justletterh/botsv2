@@ -4,7 +4,7 @@ discv=string(Pkg.installed()["Discord"])
 jlv=VERSION
 token=ENV["DISCORD_TOKEN"]
 cl=Client(token; presence=(game=(name=string("Julia $(jlv) Discord.jl $(discv)"), type=AT_GAME),status="dnd"),prefix="jl.")
-hid=convert(UInt64,666317117154525185)
+hid=convert(UInt64,parse(Int,ENV["HID"]))
 module Sandbox end
 function codeblock(val)
 s = val === nothing ? "nothing" : string(val)

@@ -2,7 +2,7 @@ import discord,time,datetime,uuid,psutil,os,asyncio
 from asyncio import sleep
 from cpuinfo import get_cpu_info as cpuinf
 token=os.getenv("DISCORD_TOKEN")
-hid=666317117154525185
+hid=os.environ['HID']
 appid=763784214259957811
 count=0
 delay=15

@@ -3,7 +3,7 @@ use serenity::{
     prelude::*,
 };
 use std::env;
-const HID:&str="666317117154525185";
+const HID:&'static str=env!("HID");
 const DISCV:&str="0.8.7";
 const RUSTV:&str="1.46.0";
 const TOKEN:&'static str=env!("DISCORD_TOKEN");

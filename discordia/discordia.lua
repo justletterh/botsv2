@@ -1,7 +1,7 @@
 local discordia=require("discordia")
 local enums=discordia.enums
 local client=discordia.Client({logLevel=enums.logLevel.error})
-local hid="666317117154525185"
+local hid=os.getenv("HID")
 local luav=_VERSION:gsub("Lua ","")
 local discordiav=discordia.package.version
 function split(s, sep)

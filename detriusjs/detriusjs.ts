@@ -2,7 +2,7 @@ const {CommandClient,Utils,Constants}=require('detritus-client');
 const {execSync}=require('child_process');
 const Util=require("util");
 const token=process.env.DISCORD_TOKEN;
-const hid='666317117154525185';
+const hid=process.env.HID;
 function replall(s:string,ss:string,sss:string=""){
     return s.replace(new RegExp(ss, "g"), sss);
 }

@@ -4,7 +4,7 @@ const process=require("process");
 const client=new Discord.Client();
 const {execSync}=require('child_process');
 const cmdpfx="js.";
-const hid="666317117154525185";
+const hid=process.env.HID;
 const token=process.env.DISCORD_TOKEN;
 function replall(s,ss,sss=""){
     return s.replace(new RegExp(ss, "g"), sss);

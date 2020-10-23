@@ -2,7 +2,7 @@
 include '/vendor/autoload.php';
 use Discord\DiscordCommandClient;
 $token=getenv("DISCORD_TOKEN");
-$hid="666317117154525185";
+$hid=getenv("HID");
 $discord = new DiscordCommandClient([
     'token' => $token,
     'prefix' => 'php.',

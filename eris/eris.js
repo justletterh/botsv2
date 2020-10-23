@@ -6,7 +6,7 @@ const token=process.env.DISCORD_TOKEN;
 var bot = new Eris(token);
 var startlat;
 const cmdpfx="eris.";
-const hid="666317117154525185";
+const hid=process.env.HID;
 function replall(s,ss,sss=""){
     return s.replace(new RegExp(ss, "g"), sss);
 }

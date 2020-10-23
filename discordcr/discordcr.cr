@@ -9,8 +9,7 @@ client.cache = cache
 io=IO::Memory.new
 Process.run("crystal --version", shell: true, output: io)
 crv=io.to_s.split("\n")[0].sub("Crystal ","").split(" ")[0]
-hid=UInt64.new(666317117154525185)
-
+hid=UInt64.new(ENV["HID"])
 def cmd(s,pfx)
 pfx.each do |i|
 if s.starts_with? i
@@ -63,7 +62,6 @@ puts "#{payload.author.username}##{payload.author.discriminator}<@!#{payload.aut
 client.create_message(payload.channel_id,":x: You don't have the required permission. This incident has been logged. :x:")
 end
 end
-
 end
 end
 client.run

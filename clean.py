@@ -4,7 +4,7 @@ f.close()
 dat=dat.split("\n")
 o=[]
 for i in dat:
-  o.append(f"{i.split('=')[0]}=h")
+  o.append(f"{i.split('=')[0]}=TOKEN")
 f=open(".env","w+")
 f.write("\n".join(o))
 f.close()
