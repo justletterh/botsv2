@@ -1,3 +1,5 @@
-# Auto detect text files and perform LF normalization
 * text=auto
-*.yml linguist-detectable=false
+* linguist-detectable=true
+*.hxml linguist-language=Haxe
+*.toml linguist-language=Rust
+docker-compose.yml linguist-language=Dockerfile
