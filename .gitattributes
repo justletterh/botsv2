@@ -1,5 +1,6 @@
 * text=auto
 * linguist-detectable=true
+*.txt linguist-detectable=false
 *.hxml linguist-language=Haxe
 *.toml linguist-language=Rust
 docker-compose.yml linguist-language=Dockerfile
