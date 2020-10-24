@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Repository Languages</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2/dist/Chart.min.css">
+        <link rel="icon" href="https://github.com/justletterh/assets/raw/master/turt.jpg">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2/dist/Chart.bundle.min.js"></script>
+        <script src="https://quickutils.github.io/language-colors/language-colors.js"></script>
+    </head>
+    <body>
+        <h1>Language Distribution</h1>
+        <canvas id="pie" width="750" height="250"></canvas>
+        <br>
+        <hr>
+        <h6>&#169;2020 <a href="https://github.com/justletterh" target="_blank">Letter h</a></h6>
+        <script>
+var ctx=document.getElementById('pie');
+function todat(l){
+    var o={backgroundColor:'#FFFFFF',datasets:[{data:[],backgroundColor:[]}],labels:[]};
+    l.forEach(function(i){
+        o.datasets[0].data.push(i.data);
+        o.datasets[0].backgroundColor.push(i.color);
+        o.labels.push(i.label);
+    });
+    return o;
+}
+function procresp(r){
+    var o=[];
+    for (i in r){
+        o.push({label:i.toLowerCase(),color:LanguageColors[i.toLowerCase()],data:r[i]});
+    }
+    return o;
+}
+function updatechart(resp){
+    var items=procresp(resp);
+    var myPieChart=new Chart(ctx, {
+        type: 'pie',
+        data: todat(items),
+        options: {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: '#FFFFFF'
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(i,data){
+                        var value=data.datasets[0].data[i.index];
+                        var sum=data.datasets[0].data.reduce(function(a, b){return a + b;},0);
+                        var o=`${data.labels[i.index]}: ${(Math.round(((value/sum)*100)*100)/100)}%`;
+                        return o;
+                    }
+                }
+            }
+        }
+    });
+}
+const xhr=new XMLHttpRequest();
+xhr.open('GET','https://api.github.com/repos/justletterh/botsv2/languages',true,null,null);
+xhr.responseType='json';
+xhr.onreadystatechange=function(){
+    if (xhr.readyState===4){
+        updatechart(xhr.response);
+    }
+}
+xhr.send();
+        </script>
+    </body>
+</html>

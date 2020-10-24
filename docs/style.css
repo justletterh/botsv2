@@ -1,0 +1,26 @@
+body{
+    text-align: center;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding-top: 2.5%;
+}
+a{
+    color: #FFFFFF;
+}
+a:hover{
+    color: #969696;
+}
+ul{
+    list-style: none;
+    font-weight: bold;
+    font-size: larger;
+}
+ul li::before{
+    content: "\2022";
+    color: #FFFFFF;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    font-size: larger;
+    margin-left: -1em;
+}
