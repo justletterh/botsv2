@@ -68,7 +68,18 @@ services:
       - "DEFAULT_LANG=tupper"
       - "DISCORD_TOKEN=${TUL}"
       - "DISCORD_OWNERID=${HID}"
-
+  rainy:
+    build: ./rainy/
+    pid: "host"
+    restart: always
+    entrypoint: bash /app/run.bash
+    volumes:
+      - "./rainy/run.bash:/app/run.bash"
+    environment:
+      - "DISCORD_TOKEN=${LGS}"
+      - "HID=${HID}"
+      - "PK=${PKAPI}"
+      - "HTOKE=${HTOKE}"
 volumes:
   pk_db_data:
   pk_influx_data:
