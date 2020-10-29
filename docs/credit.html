@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Credit</title>
+<style>
+h1{
+    text-decoration: underline;
+}
+li{
+    text-transform: capitalize;
+    font-weight: bolder;
+    font-size: larger;
+}
+li.nocap{
+    text-transform: none;
+}
+cap{
+    text-transform: capitalize;
+}
+</style>
+<link rel="stylesheet" href="./style.css">
+<script src="require.js"></script>
+<script src="jquery.js"></script>
+<link rel="icon" href="https://github.com/justletterh/assets/raw/master/turt.jpg">
+<script>
+$(document).ready(function () {
+    require(['json!credit.json'],function(credit){
+        var o="<h1>Languages:</h1><ul>";
+        credit.langs.forEach(function(i){
+            o+=`<li><a href="${i.url}" target="_blank">${i.name}</a></li>`;
+        });
+        o+="</ul><h1>Libraries:</h1><ul>";
+        credit.libs.forEach(function(i){
+            o+=`<li><a href="${i.url}" target="_blank">${i.name}</a> in ${i.lang}</li>`;
+        });
+        o+='</ul><h1>Repositories:</h1><ul>';
+        credit.repos.forEach(function(i){
+            o+=`<li><a href="${i.url}" target="_blank">${i.name}</a></li>`;
+        });
+        o+="</ul><h1>Miscellaneous:</h1><ul>";
+        credit.misc.forEach(function(i){
+            o+=`<li class="nocap"><cap>${i.name}</cap> - ${i.details.charAt(0).toUpperCase()+i.details.slice(1)}</li>`;
+        });
+        o+="</ul>"+$('body').html();
+        $('body').html(o);
+    });
+});
+</script>
+</head>
+<body>
+<br><br><br>
+<hr>
+<h6>&#169;2020 <a href="https://github.com/justletterh" target="_blank">Letter h</a></h6>
+</body>
+</html>
